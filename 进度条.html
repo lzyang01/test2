@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>进度条</title>
+</head>
+<style>
+body {
+	margin: 0;
+	padding: 0;
+}
+.progressBox {
+	height: 2000px;
+	background-color: #f30;
+}
+.progress {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 5px;
+	background-color: #663300;
+	z-index: 999;
+}
+</style>
+<body>
+
+<div class="progressBox">
+	<div class="progress"></div>
+</div>
+
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+/*
+	window.requestAnimationFrame() 方法
+	告诉浏览器您希望执行动画，并请求浏览器调用指定的函数在下一次重绘之前更新动画。
+	该方法使用一个回调函数作为参数，这个回调函数会在浏览器重绘之前调用
+*/
+(function(){
+	var wh = $(window).height();
+	var h = $('body').height();
+	var c = h - wh;
+	$(window).on('scroll', function() {
+		window.requestAnimationFrame(function(){
+			var perc = Math.max(0, Math.min(1, $(window).scrollTop() / c) * 100);
+			$('.progress').css('width',perc+'%');
+		});
+	});
+})();
+</script>
+</body>
+</html>

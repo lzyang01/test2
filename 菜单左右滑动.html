@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<style>
+body {
+	margin: 0; padding: 0;
+}
+.tabNav {
+	width: 300px; margin: auto; overflow: hidden; height: 30px; border: 1px solid #ddd; position: relative;
+}
+.tabNav ul {
+	white-space: nowrap; position: absolute; top: 0; left: 30px; list-style-type: none; padding: 0; margin: 0;
+}
+.tabNav li {
+	width: 50px; height: 30px; line-height: 30px; text-align: center; display: inline-block;
+}
+.tabNav li.action {
+	color: #f30;
+}
+.tabNav a#left {
+	display: block; width: 20px; position: absolute; top: 0; left: 0; background-color: #fff; height: 30px; line-height: 30px; text-align: center;
+}
+.tabNav a#right {
+	display: block; width: 20px; position: absolute; top: 0; right: 0; background-color: #fff; height: 30px; line-height: 30px; text-align: center;
+}
+</style>
+
+<div class="tabNav">
+	<ul id="navs">
+		<li class="action">test</li>
+		<li>test1</li>
+		<li>test2</li>
+		<li>test3</li>
+		<li>test4</li>
+		<li>test5</li>
+		<li>test6</li>
+		<li>test7</li>
+		<li>test8</li>
+		<li>test9</li>
+	</ul>
+	<a href="##" id="left"><</a>
+	<a href="##" id="right">></a>
+</div>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+/*
+	boxW 菜单一半长度
+	lefts，rights 获取前期位置
+	sleft，sright 为了选中显示中间
+*/
+var boxW = $('.tabNav').width() / 2;
+$('#right').click(function() {
+	$('#navs li.action').next('li').addClass('action').siblings().removeClass('action');
+	var lefts = $('#navs li.action').position().left;
+	var sleft =(lefts - boxW) * -1;
+	// 当前位置大于菜单一半长度
+	if (lefts > boxW) {
+		// 当前位置大于菜单长度
+		if (lefts > boxW * 2) {
+			$('#navs').css('left',boxW * -2 );
+		}else {
+			$('#navs').css('left',sleft );
+		}
+	}
+});
+$('#left').click(function() {
+	$('#navs li.action').prev('li').addClass('action').siblings().removeClass('action');
+	var rights = $('#navs li.action').position().left + 30;
+	var sright =(rights - boxW) * -1;
+	// 当前位置小于菜单长度并当前位置大于菜单一半长度 - 30(左边菜单按钮)
+	if (rights < (boxW * 2) && rights > (boxW - 30)) {
+		$('#navs').css('left',sright + 30)
+	}
+});
+</script>
+</body>
+</html>

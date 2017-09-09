@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>进度条</title>
+</head>
+<style>
+body {
+	margin: 0;
+	padding: 0;
+}
+.list {
+	width: 100%;
+	overflow: hidden;
+	padding: 10px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.list li {
+	width: 33.3%;
+	float: left;
+	text-align: center;
+	line-height: 100px;
+	margin: 10px 0;
+}
+.list li img {
+	width: 100px;
+	height: 100px;
+	display: block;
+	margin: auto;
+	background-color: #f30;
+}
+</style>
+<body>
+
+<ul class="list" id="list">
+	<li><img src="" alt=""></li>
+	<li><img src="" alt=""></li>
+	<li id="add">+</li>
+</ul>
+
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+$('#add').click(function() {
+	$('#add').before('<li><img src="" alt=""></li>');
+});
+</script>
+</body>
+</html>
